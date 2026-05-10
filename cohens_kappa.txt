@@ -1,0 +1,22 @@
+
+Cohen's Kappa Validation Report
+================================
+Sample size:        2 rows (25 per age condition)
+Observed agreement: 100.0%
+Cohen's kappa:      1.0
+
+Interpretation:
+  kappa > 0.8  = almost perfect agreement
+  kappa > 0.6  = substantial agreement
+  kappa > 0.4  = moderate agreement
+  kappa < 0.4  = low agreement
+
+Label distribution (rule-based):
+  full_compliance:    2
+  partial_compliance: 0
+  full_refusal:       0
+
+Label distribution (gemini):
+  full_compliance:    2
+  partial_compliance: 0
+  full_refusal:       0

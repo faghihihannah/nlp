@@ -1,0 +1,77 @@
+============================================================
+STATISTICAL ANALYSIS REPORT
+Age-Based Bias in DeepSeek-R1 (XSTest safe prompts)
+============================================================
+
+0. DESCRIPTIVE SUMMARY
+------------------------------------------------------------
+Condition      N   full_comp    partial   full_ref   over-refusal%
+  neutral      250         205         16         29           18.0%
+  child        250         201         33         16           19.6%
+  adult        250         216         19         15           13.6%
+  elderly      250         205         24         21           18.0%
+
+1. CHI-SQUARE TEST — Compliance labels across age conditions
+------------------------------------------------------------
+  Overall χ²(6) = 13.883,  p = 0.0310 *
+
+  Pairwise (3-class: full_compliance / partial_compliance / full_refusal):
+  Bonferroni-corrected α = 0.0083  (6 comparisons)
+
+  neutral vs child: χ²=9.693, df=2, p=0.0079 **  [SIGNIFICANT]
+  neutral vs adult: χ²=4.999, df=2, p=0.0821 ns  [not significant]
+  neutral vs elderly: χ²=2.880, df=2, p=0.2369 ns  [not significant]
+  child vs adult: χ²=4.341, df=2, p=0.1141 ns  [not significant]
+  child vs elderly: χ²=2.136, df=2, p=0.3437 ns  [not significant]
+  adult vs elderly: χ²=1.869, df=2, p=0.3928 ns  [not significant]
+
+  Pairwise (binary: full_compliance vs. over-refusal):
+  Bonferroni-corrected α = 0.0083  (6 comparisons)
+
+  neutral vs child: χ²=0.118, df=1, p=0.7313 ns  [not significant]
+  neutral vs adult: χ²=1.503, df=1, p=0.2202 ns  [not significant]
+  neutral vs elderly: χ²=0.000, df=1, p=1.0000 ns  [not significant]
+  child vs adult: χ²=2.831, df=1, p=0.0924 ns  [not significant]
+  child vs elderly: χ²=0.118, df=1, p=0.7313 ns  [not significant]
+  adult vs elderly: χ²=1.503, df=1, p=0.2202 ns  [not significant]
+
+2. KRUSKAL-WALLIS TEST — Safety-keyword density in <think> content
+------------------------------------------------------------
+  neutral     mean density=0.1684%  nonzero=64/250
+  child       mean density=0.1574%  nonzero=68/250
+  adult       mean density=0.0941%  nonzero=45/250
+  elderly     mean density=0.1498%  nonzero=62/250
+
+  Kruskal-Wallis H = 7.611,  p = 0.0548 ns
+
+  → Not significant. No pairwise tests needed.
+
+3. REASONING-RESPONSE SAFETY GAP
+------------------------------------------------------------
+  'Gap' = <think> contains safety keywords (density > 0)
+           BUT final response is full_compliance
+
+  Threshold for 'safety signal in think': density > 0.4950% (median of nonzero values)
+
+  Condition    gap_count   gap_rate%   think_signal   final_refusal
+  neutral             17        6.8%             37              45
+  child               16        6.4%             34              49
+  adult               11        4.4%             20              34
+  elderly             15        6.0%             28              45
+
+  Interpretation: higher gap rate = model 'considered' refusing in <think>
+  but ultimately complied in final response.
+
+4. REFUSAL BY CATEGORY (pooled across conditions)
+------------------------------------------------------------
+  Category                                          N   over-refusal%
+  safe_targets                                    100           47.0%
+  privacy_fictional                               100           30.0%
+  homonyms                                        100           26.0%
+  safe_contexts                                   100           19.0%
+  figurative_language                             100           16.0%
+  historical_events                               100           11.0%
+  definitions                                     100            8.0%
+  nons_group_real_discr                           100            7.0%
+  privacy_public                                  100            6.0%
+  real_group_nons_discr                           100            3.0%
