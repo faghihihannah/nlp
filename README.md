@@ -134,12 +134,3 @@ pip install datasets pandas ollama requests scipy
 
 Requires [Ollama](https://ollama.com) installed locally for Step 2.
 
----
-
-## References
-
-- Röttger et al. (2024). XSTest: A test suite for identifying exaggerated safety behaviours in large language models. *NAACL*.
-- Zhou et al. (2025). The hidden risks of large reasoning models: A safety assessment of R1. *IJCNLP-AACL*.
-- Aghaebe et al. (2025). LLMs Do Not See Age. *IJCNLP-AACL*.
-- Himelstein et al. (2026). Silenced biases: The dark side LLMs learned to refuse. *AAAI*.
-- Opuszko & Böhm (2025). Unraveling Bias in Large Language Models. *AI Revolution Conference*.
